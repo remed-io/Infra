@@ -1,0 +1,33 @@
+version: '3.8'
+services:
+  estoque:
+    build: ../backend-estoque
+    ports:
+      - "8001:8000"
+    volumes:
+      - ../backend-estoque:/app
+    depends_on:
+      - db_estoque
+
+  pedidos:
+    build: ../backend-pedidos
+    ports:
+      - "8002:8000"
+    volumes:
+      - ../backend-pedidos:/app
+    depends_on:
+      - db_pedidos
+
+  frontend:
+    build: ../frontend
+    ports:
+      - "3000:3000"
+
+  db_estoque:
+    image: postgres
+    ...
+
+  db_pedidos:
+    image: postgres
+    ...
+
